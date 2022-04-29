@@ -1,3 +1,8 @@
-from django.shortcuts import render
+# modulos de DRF
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+class HelloWorld(APIView):
+    def get(self, request): # verbo de la peticion como un metodo
+        # logica asociada al endpoint
+        return Response(data="Hello, World !", status=200) # respuesta del servicio
