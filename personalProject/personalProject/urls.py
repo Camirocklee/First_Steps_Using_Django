@@ -30,5 +30,5 @@ urlpatterns = [
     path('hi', HelloWorld.as_view(), name="helloworld"),
     path('api-auth/', include('rest_framework.urls')),
     path('pets/', PetListAPIView.as_view(), name="all_pets"),
-    path('persons/', PersonAPI.as_view(), name="persons"),
+    path('person', PersonAPI.as_view(), name="persons"),
 ]

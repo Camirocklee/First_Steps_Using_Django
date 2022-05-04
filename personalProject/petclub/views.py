@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from petclub.models import Person
+from petclub.models import(
+    Person,
+)
 from rest_framework.generics import (
     RetrieveAPIView,
     ListAPIView,
@@ -22,6 +24,9 @@ class HelloWorld(APIView): #Clase(PuntoDeEntrada):
 class PersonAPI(APIView):
     def get(self,request):
         personas = [person.rut for person in Person.objects.all()]
+        if not personas:
+            return Response(data="Estoy en el get, aun no hay personas creadas", status=200)
+
         return Response(personas) 
     def patch(self,request):
         return Response(data="Estoy en el patch de PersonAPI" , status=200)
