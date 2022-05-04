@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from petclub.models import(
     Person,
+    Pet,
 )
 from rest_framework.generics import (
     RetrieveAPIView,
@@ -35,6 +36,19 @@ class PersonAPI(APIView):
     def post(self,request):
         return Response(data="Estoy en el post de PersonAPI", status=200)
 
+class PetAPI(APIView):
+    def get(self,request):
+        pets = [pet.rut for pet in Pet.objects.all()]
+        if not pets:
+            return Response(data="Estoy en el get, aun no hay pets creadas", status=200)
+
+        return Response(pets) 
+    def patch(self,request):
+        return Response(data="Estoy en el patch de PetsAPI" , status=200)
+    def delete(self,request):
+        return Response(data="Estoy en el delete de PetsAPI ", status=200)
+    def post(self,request):
+        return Response(data="Estoy en el post de PetsAPI", status=200)
 
 
 class PetListAPIView(ListAPIView):
